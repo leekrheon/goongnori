@@ -57,7 +57,7 @@
   </div>
 
   <!-- 오디오 재생 버튼 -->
-  <button id="audioButton" class="audio-button">음악 재생하기 🎵</button>
+  <button id="audioButton" class="audio-button">stereo curation</button>
 
   <!-- 오디오 파일 -->
   <audio id="bgm" src="your-audio.mp3" loop></audio>
@@ -69,7 +69,7 @@
     button.addEventListener('click', () => {
       if (audio.paused) {
         audio.play();
-        button.textContent = '음악 일시정지 ⏸️';
+        button.textContent = 'stereo stop';
         button.classList.add('playing');
       } else {
         audio.pause();
