@@ -1,71 +1,82 @@
-/*
-Copyright (c) 2021 Kil Hyung-jin, with Reserved Font Name Pretendard.
-https://github.com/orioncactus/pretendard
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NFC Emotion Page</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #000;
+    color: white;
+    font-family: 'Pretendard', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+  }
 
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-http://scripts.sil.org/OFL
-*/
+  .container {
+    position: relative;
+  }
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 900;
-	font-display: swap;
-	src: local('Pretendard Black'), url(./woff2/Pretendard-Black.woff2) format('woff2'), url(./woff/Pretendard-Black.woff) format('woff');
-}
+  .long-image {
+    width: 100%;
+    display: block;
+  }
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 800;
-	font-display: swap;
-	src: local('Pretendard ExtraBold'), url(./woff2/Pretendard-ExtraBold.woff2) format('woff2'), url(./woff/Pretendard-ExtraBold.woff) format('woff');
-}
+  .audio-button {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-size: 16px;
+    color: white;
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 700;
-	font-display: swap;
-	src: local('Pretendard Bold'), url(./woff2/Pretendard-Bold.woff2) format('woff2'), url(./woff/Pretendard-Bold.woff) format('woff');
-}
+  .audio-button:hover {
+    background: rgba(255,255,255,0.25);
+  }
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 600;
-	font-display: swap;
-	src: local('Pretendard SemiBold'), url(./woff2/Pretendard-SemiBold.woff2) format('woff2'), url(./woff/Pretendard-SemiBold.woff) format('woff');
-}
+  .playing {
+    background: rgba(0, 255, 150, 0.25);
+    border-color: rgba(0, 255, 150, 0.5);
+  }
+</style>
+</head>
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 500;
-	font-display: swap;
-	src: local('Pretendard Medium'), url(./woff2/Pretendard-Medium.woff2) format('woff2'), url(./woff/Pretendard-Medium.woff) format('woff');
-}
+<body>
+  <div class="container">
+    <!-- 아주 긴 이미지 -->
+    <img src="your-long-image.jpg" alt="Emotion Image" class="long-image">
+  </div>
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 400;
-	font-display: swap;
-	src: local('Pretendard Regular'), url(./woff2/Pretendard-Regular.woff2) format('woff2'), url(./woff/Pretendard-Regular.woff) format('woff');
-}
+  <!-- 오디오 재생 버튼 -->
+  <button id="audioButton" class="audio-button">음악 재생하기 🎵</button>
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 300;
-	font-display: swap;
-	src: local('Pretendard Light'), url(./woff2/Pretendard-Light.woff2) format('woff2'), url(./woff/Pretendard-Light.woff) format('woff');
-}
+  <!-- 오디오 파일 -->
+  <audio id="bgm" src="your-audio.mp3" loop></audio>
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 200;
-	font-display: swap;
-	src: local('Pretendard ExtraLight'), url(./woff2/Pretendard-ExtraLight.woff2) format('woff2'), url(./woff/Pretendard-ExtraLight.woff) format('woff');
-}
+  <script>
+    const audio = document.getElementById('bgm');
+    const button = document.getElementById('audioButton');
 
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 100;
-	font-display: swap;
-	src: local('Pretendard Thin'), url(./woff2/Pretendard-Thin.woff2) format('woff2'), url(./woff/Pretendard-Thin.woff) format('woff');
-}
+    button.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        button.textContent = '음악 일시정지 ⏸️';
+        button.classList.add('playing');
+      } else {
+        audio.pause();
+        button.textContent = '음악 재생하기 🎵';
+        button.classList.remove('playing');
+      }
+    });
+  </script>
+</body>
+</html>
